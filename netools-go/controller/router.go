@@ -2,7 +2,6 @@ package controller
 
 import (
 	"main/controller/api"
-	"main/middleware"
 	"main/config"
 	"net/http"
 	"os"
@@ -35,7 +34,6 @@ func Router() {
 	})
 
 	mvc.Configure(app.Party("/api"), func(m *mvc.Application) {
-		m.Party("/test", middleware.CheckAuthToken).Handle(new(api.TestController))
 		m.Party("/text").Handle(new(api.TextController))
 		m.Party("/file").Handle(new(api.FileController))
 	})
