@@ -24,7 +24,7 @@ func (c *FileController) PostUpload() *model.JsonResult {
 		return model.JsonErrorMsg(-1, "invalid upload")
 	}
 	defer reader.Close()
-	f := service.FileService.Create(info.Filename)
+	f := service.FileService.Create(info.Filename, info.Size)
 	if f == nil {
 		return model.JsonErrorMsg(-1, "upload failed")
 	}

@@ -47,13 +47,14 @@ func (r *fileRepository) GetByUUID(ctx context.Context, uuid string) *model.File
 	return f
 }
 
-func (r *fileRepository) Create(ctx context.Context, filename string) *model.File {
+func (r *fileRepository) Create(ctx context.Context, filename string, size int64) *model.File {
 	_uuid := uuid.New().String()
 	key := config.FileKeyPrefix + _uuid
 	file := &model.File{
 		Timestamp: util.GetTimestamp(),
 		UUID:      _uuid,
 		Filename:  filename,
+		Size:      size,
 	}
 	_, err := database.RDB.SetEX(ctx, key, file.Stringify(), config.KeyExpireTime).Result()
 	if err != nil {

@@ -26,6 +26,6 @@ func (s *fileService) GetByUUID(uuid string) *model.File {
 	return repository.FileRepository.GetByUUID(s.Ctx, uuid)
 }
 
-func (s *fileService) Create(filename string) *model.File {
-	return repository.FileRepository.Create(s.Ctx, filename)
+func (s *fileService) Create(filename string, size int64) *model.File {
+	return repository.FileRepository.Create(s.Ctx, filename, size)
 }

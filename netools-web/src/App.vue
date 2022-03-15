@@ -2,14 +2,15 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import Header from './components/Header.vue'
-import TextArea from './components/TextArea.vue';
-import FileArea from './components/FileArea.vue';
+
 </script>
 
 <template>
-  <div class="bg-gray-50 h-screen flex flex-col">
-    <Header></Header>
-    <FileArea></FileArea>
+  <div class="absolute overflow-x-hidden h-screen w-screen z-0">
+    <div class="bg-gray-50 h-screen flex flex-col">
+      <Header></Header>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

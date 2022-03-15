@@ -14,7 +14,11 @@ export default defineComponent({
           },
           textColor1: {},
           textColor2: {},
-          textColor3: {}
+          textColor3: {},
+          smallMenu: {
+              "hidden": true,
+          },
+          isShow: false,
       }
   },
   mounted() {
@@ -38,7 +42,12 @@ export default defineComponent({
                 this.textColor3 = this.textBlack;
                 break;
         }
-      }
+      },
+    showMenu: function() {
+        console.log(this.isShow)
+        this.smallMenu.hidden = this.isShow;
+        this.isShow = !this.isShow;
+    }
   },
 });
 </script>
@@ -54,33 +63,37 @@ export default defineComponent({
                         </a>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
+                            <router-link to="/text">
                                 <a
                                     class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-500 ease-in-out"
                                     :class = "textColor1"
                                     @click="setActive(1)"
-                                    href="/#"
-                                >Text</a>
+                                    href="/#/text"
+                                >Text</a></router-link>
+                                <router-link to="/file">
                                 <a
                                     class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-500 ease-in-out"
                                     :class = "textColor2"
-                                    href="/#"
+                                    href="/#/file"
                                     @click="setActive(2)"
-                                >File</a>
+                                >File</a></router-link>
+                                <router-link to="/list">
                                 <a
                                     class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-500 ease-in-out"
                                     :class = "textColor3"
-                                    href="/#"
+                                    href="/#/list"
                                     @click="setActive(3)"
-                                >List</a>
+                                >List</a></router-link>
                             </div>
                         </div>
                     </div>
                     <div class="block">
                         <div class="ml-4 flex items-center md:ml-6"></div>
                     </div>
-                    <!-- <div class="-mr-2 flex md:hidden">
+                    <div class="-mr-2 flex md:hidden">
                         <button
                             class="text-gray-800 dark:text-white hover:text-gray-300 inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
+                            @click="showMenu"
                         >
                             <svg
                                 width="20"
@@ -95,25 +108,31 @@ export default defineComponent({
                                 />
                             </svg>
                         </button>
-                    </div> -->
+                    </div>
                 </div>
             </div>
-            <!-- <div class="md:hidden">
+            <div class="md:hidden" :class="smallMenu">
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <a
-                        class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base"
-                        href="/#"
+                        class=" hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base transition duration-500 ease-in-out"
+                        href="/#/text"
+                        :class = "textColor1"
+                        @click="setActive(1)"
                     >Home</a>
                     <a
-                        class="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
-                        href="/#"
+                        class=" hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-500 ease-in-out"
+                        href="/#/file"
+                        :class = "textColor2"
+                        @click="setActive(2)"
                     >Gallery</a>
                     <a
-                        class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                        href="/#"
+                        class=" hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-500 ease-in-out"
+                        href="/#/list"
+                        :class = "textColor3"
+                        @click="setActive(3)"
                     >Content</a>
                 </div>
-            </div> -->
+            </div>
         </nav>
     </div>
 </template>

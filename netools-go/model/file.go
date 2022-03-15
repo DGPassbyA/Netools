@@ -14,6 +14,7 @@ type File struct {
 	UUID      string `json:"uuid"`
 	Timestamp int64  `json:"timestamp"`
 	Filename  string `json:"filename"`
+	Size      int64  `json:"size"`
 }
 
 func (f *File) Stringify() string {
