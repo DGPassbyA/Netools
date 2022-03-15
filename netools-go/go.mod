@@ -10,7 +10,6 @@ require (
 )
 
 require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/iris-contrib/middleware/cors v0.0.0-20220301201128-27fa0f6a7d7e
 	github.com/kataras/iris/v12 v12.2.0-alpha9
 	github.com/sirupsen/logrus v1.8.1
