@@ -5,7 +5,7 @@
       role="alert"
     >
       <p class="font-bold">{{title}}</p>
-      <p>{{content.length > 45 ? content : (content + "&nbsp".repeat(45-content.length))}}</p>
+      <p>{{(content as String).length > 45 ? content : (content + "&nbsp".repeat(45-(content as String).length))}}</p>
     </div>
 </template>
 

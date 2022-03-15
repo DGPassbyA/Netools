@@ -43,6 +43,9 @@ export default defineComponent({
     mounted() {
         axios.get("/text/all").then(res => {
             if(res.status == 200 && res.data.retcode == 0){
+                if(res.data.data == null){
+                    return
+                }
                 this.textList = res.data.data;
             }else{
                 showTips({
@@ -60,6 +63,9 @@ export default defineComponent({
         })
         axios.get("/file/all").then(res => {
             if(res.status == 200 && res.data.retcode == 0){
+                if(res.data.data == null){
+                    return
+                }
                 this.fileList = res.data.data;
             }else{
                 showTips({

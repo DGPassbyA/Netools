@@ -42,12 +42,13 @@
             </div>
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p class="text-gray-900 whitespace-no-wrap">{{type=="text"?(size+"字符"):Math.floor(size/1024)+"KB"}}</p>
+            <p class="text-gray-900 whitespace-no-wrap">{{type=="text"?(size+"字符"):Math.floor((size as number)/1024)+"KB"}}</p>
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p class="text-gray-900 whitespace-no-wrap">{{getTime(timestamp)}}</p>
+            <p class="text-gray-900 whitespace-no-wrap">{{getTime((timestamp as number))}}</p>
         </td>
-        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer" @click="actionClick" >
+        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer" @click="actionClick"
+        >
             <svg
                 v-if="type == 'text'"
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +95,6 @@ export default defineComponent({
         uuid: String,
         size: Number,
         timestamp: Number,
-        // timestamp: String,
     },
     data() {
         return {
@@ -102,8 +102,8 @@ export default defineComponent({
         }
     },
     methods: {
-    textCopy: function () {
-        this.$copyText(this.content).then( e => {
+    textCopy: function (){
+        this.$copyText(this.content).then( function(e:any){
             // alert('复制成功')
             console.log(e)
             showTips({
@@ -111,7 +111,7 @@ export default defineComponent({
                 content: "Copy to clipboard successfully!",
                 type: "success"
             })
-        }, function (e) {
+        }, function (e: any) {
             // alert('复制失败')
             console.log(e)
             showTips({
@@ -126,7 +126,7 @@ export default defineComponent({
     },
     actionClick: function() {
         if(this.type == "text"){
-            this.textCopy();
+            return
         }else if(this.type == "file"){
             this.fileDownload();
         }
