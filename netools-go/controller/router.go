@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"main/controller/api"
 	"main/config"
+	"main/controller/api"
 	"net/http"
 	"os"
 
@@ -29,10 +29,10 @@ func Router() {
 
 	app.AllowMethods(iris.MethodOptions)
 
-	app.Any("/", func(ctx iris.Context) {
-		_, _ = ctx.HTML("<h1>Powered by HoshinoMaster</h1>")
-	})
-
+	// app.Any("/", func(ctx iris.Context) {
+	// 	_, _ = ctx.HTML("<h1>Powered by HoshinoMaster</h1>")
+	// })
+	app.HandleDir("/", iris.Dir("./static/"))
 	mvc.Configure(app.Party("/api"), func(m *mvc.Application) {
 		m.Party("/text").Handle(new(api.TextController))
 		m.Party("/file").Handle(new(api.FileController))
