@@ -84,9 +84,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref} from "vue";
 import axios from 'axios';
-import {showTips} from "../utils/tips"
+import {showTips} from "../utils/tips";
+import useClipboard from 'vue-clipboard3'
 export default defineComponent({
     name: "ListItem",
     props: {
@@ -98,35 +99,34 @@ export default defineComponent({
     },
     data() {
         return {
-
         }
     },
     methods: {
     textCopy: function (){
-        this.$copyText(this.content).then( function(e:any){
-            // alert('复制成功')
-            console.log(e)
-            showTips({
-                title: "Success",
-                content: "Copy to clipboard successfully!",
-                type: "success"
+        try{
+            useClipboard().toClipboard(this.content as string).then(() => {
+                showTips({
+                    "title": "Success",
+                    "type": "success",
+                    "content": "Copy text successfully!",
+                    "duration": 1000
+                })
             })
-        }, function (e: any) {
-            // alert('复制失败')
-            console.log(e)
+        }catch(e){
             showTips({
-                title: "Error",
-                content: e.message,
-                type: "error"
-            })
-        })
+                    "title": "Error",
+                    "type": "error",
+                    "content": "Failed to copy text!",
+                })
+        }
+
     },
     fileDownload: function () {
         window.open(axios.defaults.baseURL + "file/download?uuid="+this.uuid);
     },
     actionClick: function() {
         if(this.type == "text"){
-            return
+            this.textCopy();
         }else if(this.type == "file"){
             this.fileDownload();
         }
