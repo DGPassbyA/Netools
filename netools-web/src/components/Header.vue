@@ -118,19 +118,19 @@ export default defineComponent({
                         href="/#/text"
                         :class = "textColor1"
                         @click="setActive(1)"
-                    >Home</a>
+                    >Text</a>
                     <a
                         class=" hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-500 ease-in-out"
                         href="/#/file"
                         :class = "textColor2"
                         @click="setActive(2)"
-                    >Gallery</a>
+                    >File</a>
                     <a
                         class=" hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-500 ease-in-out"
                         href="/#/list"
                         :class = "textColor3"
                         @click="setActive(3)"
-                    >Content</a>
+                    >List</a>
                 </div>
             </div>
         </nav>
