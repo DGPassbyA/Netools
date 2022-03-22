@@ -19,6 +19,7 @@ func Router() {
 	app.Logger().SetLevel("warn")
 	app.Use(recover.New())
 	app.Use(logger.New())
+	//CORS settings
 	app.Use(cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"}, // allows everything, use that to change the hosts.
 		AllowCredentials: true,
@@ -32,10 +33,14 @@ func Router() {
 	// app.Any("/", func(ctx iris.Context) {
 	// 	_, _ = ctx.HTML("<h1>Powered by HoshinoMaster</h1>")
 	// })
+
+	// static web page
 	app.HandleDir("/", iris.Dir("./static/"))
+	//mvc path
 	mvc.Configure(app.Party("/api"), func(m *mvc.Application) {
 		m.Party("/text").Handle(new(api.TextController))
 		m.Party("/file").Handle(new(api.FileController))
+		m.Party("/bookmark").Handle(new(api.BookmarkController))
 	})
 
 	server := &http.Server{Addr: config.ServerAddr}

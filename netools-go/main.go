@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	//go ws.InitWSClient()
 	database.RedisInit()
+	database.SqliteInit()
+	database.SqliteInitSchema()
 	controller.Router()
 }

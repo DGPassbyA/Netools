@@ -24,4 +24,5 @@ func RedisInit() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf("Init Redis successfully.")
 }

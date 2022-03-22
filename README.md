@@ -3,6 +3,6 @@
 
 ## 架构
 
-后端：golang+iris+redis
+后端：golang+iris+redis+gorm+sqlite3
 
 前端：vue3+vite+ts+axios+tailwind
